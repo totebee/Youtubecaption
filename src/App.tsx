@@ -28,10 +28,9 @@ function App() {
     return () => subscription.unsubscribe();
   }, []);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // TODO: Implement video processing
-    console.log('Processing video:', videoUrl)
+    console.log('Video URL:', videoUrl)
   }
 
   if (loading) {
