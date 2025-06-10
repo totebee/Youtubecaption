@@ -11,6 +11,7 @@ import SignUp from './pages/SignUp';
 function App() {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  const [videoUrl, setVideoUrl] = useState('')
 
   useEffect(() => {
     // Check active sessions and sets the user
@@ -26,6 +27,12 @@ function App() {
 
     return () => subscription.unsubscribe();
   }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    // TODO: Implement video processing
+    console.log('Processing video:', videoUrl)
+  }
 
   if (loading) {
     return <div>Loading...</div>;
