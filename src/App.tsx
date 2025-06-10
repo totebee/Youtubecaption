@@ -1,7 +1,8 @@
 import { ChakraProvider, Box } from '@chakra-ui/react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { supabase, User } from './lib/supabase';
+import { supabase } from './lib/supabase';
+import type { User } from './lib/supabase';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
@@ -11,7 +12,6 @@ import SignUp from './pages/SignUp';
 function App() {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
-  const [videoUrl, setVideoUrl] = useState('')
 
   useEffect(() => {
     // Check active sessions and sets the user
@@ -27,11 +27,6 @@ function App() {
 
     return () => subscription.unsubscribe();
   }, []);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    console.log('Video URL:', videoUrl)
-  }
 
   if (loading) {
     return <div>Loading...</div>;

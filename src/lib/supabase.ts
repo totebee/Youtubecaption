@@ -1,13 +1,9 @@
-import { createClient } from '@supabase/supabase-js';
+import { createClient, User as SupabaseUser } from '@supabase/supabase-js';
 import { config } from '../config';
 
 export const supabase = createClient(config.supabase.url, config.supabase.anonKey);
 
-export type User = {
-  id: string;
-  email: string;
-  created_at: string;
-};
+export type User = SupabaseUser;
 
 export type CaptionRequest = {
   id: string;
