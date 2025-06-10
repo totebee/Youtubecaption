@@ -3,24 +3,27 @@ compatibility_date = "2024-02-10"
 
 [site]
 bucket = "./dist"
+entry-point = "functions"
 
 [build]
 command = "npm run build"
+cwd = "."
 
 [env.production]
-name = "youtube-caption-generator-prod"
+name = "youtube-caption-generator"
 workers_dev = true
+route = ""
+zone_id = ""
 
-[env.production.vars]
-ENVIRONMENT = "production"
+# KV Namespace for storing session data
+kv_namespaces = [
+  { binding = "CAPTION_SESSIONS", id = "your-kv-namespace-id" }
+]
 
-[[kv_namespaces]]
-binding = "CAPTION_REQUESTS"
-id = "your-kv-namespace-id"
-preview_id = "your-preview-kv-namespace-id"
-
+# Cron trigger for cleanup
 [triggers]
-crons = ["0 0 * * *"]  # Daily cleanup of old requests
+crons = ["0 0 * * *"]  # Run daily at midnight
 
 # Pages configuration
+[pages]
 pages_build_output_dir = "dist" 
