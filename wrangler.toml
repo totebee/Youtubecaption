@@ -10,7 +10,6 @@ command = "npm run build"
 [env.production]
 name = "youtube-caption-generator-prod"
 workers_dev = true
-route = "youtube-caption-generator.pages.dev/*"
 
 [env.production.vars]
 ENVIRONMENT = "production"
@@ -18,4 +17,10 @@ ENVIRONMENT = "production"
 [[kv_namespaces]]
 binding = "CAPTION_REQUESTS"
 id = "your-kv-namespace-id"
-preview_id = "your-preview-kv-namespace-id" 
+preview_id = "your-preview-kv-namespace-id"
+
+[triggers]
+crons = ["0 0 * * *"]  # Daily cleanup of old requests
+
+# Pages configuration
+pages_build_output_dir = "dist" 
